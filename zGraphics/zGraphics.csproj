@@ -6,7 +6,7 @@
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType></DebugType>
-    <DefineConstants>OPENGL;DEBUG;TRACE;NETSTANDARD$(TargetFrameworkVersion_SubString(1));</DefineConstants>
+    <DefineConstants>MACOS;OPENGL;DEBUG;TRACE;NETSTANDARD;;NETSTANDARD$(TargetFrameworkVersion_SubString(1))</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -34,8 +34,8 @@
       <Version>1.6.1</Version>
     </PackageReference>
   </ItemGroup>
-
+	
   <ItemGroup>
-    <Folder Include="OpenGL\" />
+    <ProjectReference Include="..\External\Glfw.Net\Glfw\Glfw.csproj" />
   </ItemGroup>
 </Project>
