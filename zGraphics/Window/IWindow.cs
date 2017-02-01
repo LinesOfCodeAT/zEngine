@@ -1,8 +1,11 @@
 ﻿using System;
 namespace zGraphics
 {
-	interface IWindow
+	public interface IWindow
 	{
-		void CreateWindow(int width, int height, string title);
+		void setTitle(string title);
+		void setWidth(int width);
+		void setHeight(int height);
+		void setSize(int width, int height);
 	}
 }
