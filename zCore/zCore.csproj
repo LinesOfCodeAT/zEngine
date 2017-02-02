@@ -4,6 +4,8 @@
     	<PackOnBuild>true</PackOnBuild>
 		<PackageId>zEngine.Core</PackageId>
 		<Description>Core module of the zEngine</Description>
+		<ReleaseVersion>0.0.1</ReleaseVersion>
+		<PackageVersion>$(ReleaseVersion)</PackageVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

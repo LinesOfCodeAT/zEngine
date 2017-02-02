@@ -4,6 +4,8 @@
     	<PackOnBuild>true</PackOnBuild>
 		<PackageId>zEngine.Graphics</PackageId>
 		<Description>Graphics module of the zEngine</Description>
+		<ReleaseVersion>0.0.1</ReleaseVersion>
+		<PackageVersion>$(ReleaseVersion)</PackageVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -13,7 +15,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="NETStandard.Library" Version="1.6" />
-		<PackageReference Include="Glfw.Net" Version="1.0.0" />
+		<PackageReference Include="Glfw.Net" Version="$(PackageVersion)" />
 	</ItemGroup>
 
 	<PropertyGroup>

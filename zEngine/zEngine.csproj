@@ -4,6 +4,8 @@
     	<PackOnBuild>true</PackOnBuild>
 		<PackageId>zEngine</PackageId>
 		<Description>zEngine Package containing all Modules of the zEngine Project</Description>
+		<ReleaseVersion>0.0.1</ReleaseVersion>
+		<PackageVersion>$(ReleaseVersion)</PackageVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -24,6 +26,7 @@
 	  	<Optimize>true</Optimize>
 	  	<OutputPath>bin\MacOS</OutputPath>
 	  	<WarningLevel>4</WarningLevel>
+	  	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux|AnyCPU' ">
 		<DefineConstants>LINUX;</DefineConstants>

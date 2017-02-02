@@ -4,6 +4,8 @@
     	<PackOnBuild>true</PackOnBuild>
 		<PackageId>zEngine.Physics</PackageId>
 		<Description>Physics module of the zEngine</Description>
+		<ReleaseVersion>0.0.1</ReleaseVersion>
+		<PackageVersion>$(ReleaseVersion)</PackageVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

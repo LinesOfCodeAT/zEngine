@@ -4,6 +4,8 @@
     	<PackOnBuild>true</PackOnBuild>
 		<PackageId>zEngine.AI</PackageId>
 		<Description>AI module of the zEngine</Description>
+		<ReleaseVersion>0.0.1</ReleaseVersion>
+		<PackageVersion>$(ReleaseVersion)</PackageVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
