@@ -1,18 +1,63 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  	<PropertyGroup>
+    	<TargetFramework>netstandard1.4</TargetFramework>
+    	<PackOnBuild>true</PackOnBuild>
+		<PackageId>zEngine.AI</PackageId>
+		<Description>AI module of the zEngine</Description>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
-  </PropertyGroup>
+	<ItemGroup>
+    	<Compile Include="**\*.cs" />
+    	<EmbeddedResource Include="**\*.resx" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="**\*.cs" />
-    <EmbeddedResource Include="**\*.resx" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NETStandard.Library" Version="1.6" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="NETStandard.Library">
-      <Version>1.6.1</Version>
-    </PackageReference>
-  </ItemGroup>
+	<PropertyGroup>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks> 
+	</PropertyGroup>
 
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MacOS|AnyCPU' ">
+		<DefineConstants>MACOS;</DefineConstants>
+	  	<Optimize>true</Optimize>
+	  	<OutputPath>bin\MacOS</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux|AnyCPU' ">
+		<DefineConstants>LINUX;</DefineConstants>
+	  	<Optimize>true</Optimize>
+	  	<OutputPath>bin\Linux</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MacOS-Debug|AnyCPU' ">
+	  	<DefineConstants>MACOS;DEBUG;</DefineConstants>
+		<Optimize>false</Optimize>
+	  	<OutputPath>bin\MacOS-Debug</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux-Debug|AnyCPU' ">
+	  	<DefineConstants>LINUX;DEBUG;</DefineConstants>
+		<Optimize>false</Optimize>
+	  	<OutputPath>bin\Linux-Debug</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows|AnyCPU' ">
+	  	<DefineConstants>WINDOWS;</DefineConstants>
+		<Optimize>true</Optimize>
+	  	<OutputPath>bin\Windows</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows-Debug|AnyCPU' ">
+	  	<DefineConstants>WINDOWS;DEBUG</DefineConstants>
+		<Optimize>false</Optimize>
+	  	<OutputPath>bin\Windows-Debug</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	
+	<Target Name="CopyPackage" AfterTargets="Build">
+		<CallTarget Targets="Pack" />
+		<Copy SourceFiles="$(OutputPath)\..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="..\Packages\" />
+	</Target>
 </Project>

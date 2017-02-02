@@ -1,41 +1,64 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  	<PropertyGroup>
+    	<TargetFramework>netstandard1.4</TargetFramework>
+    	<PackOnBuild>true</PackOnBuild>
+		<PackageId>zEngine.Graphics</PackageId>
+		<Description>Graphics module of the zEngine</Description>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
-  </PropertyGroup>
+	<ItemGroup>
+    	<Compile Include="**\*.cs" />
+    	<EmbeddedResource Include="**\*.resx" />
+	</ItemGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType></DebugType>
-    <DefineConstants>MACOS;OPENGL;DEBUG;TRACE;NETSTANDARD;;NETSTANDARD$(TargetFrameworkVersion_SubString(1))</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="**\*.cs" />
-    <EmbeddedResource Include="**\*.resx" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NETStandard.Library" Version="1.6" />
+		<PackageReference Include="Glfw.Net" Version="1.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="NETStandard.Library">
-      <Version>1.6.1</Version>
-    </PackageReference>
-  </ItemGroup>
+	<PropertyGroup>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks> 
+	</PropertyGroup>
+
+	<Target Name="CopyPackage" AfterTargets="Build">
+		<CallTarget Targets="Pack" />
+		<Copy SourceFiles="$(OutputPath)\..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="..\Packages\" />
+	</Target>
 	
-  <ItemGroup>
-    <ProjectReference Include="..\External\Glfw.Net\Glfw\Glfw.csproj" />
-  </ItemGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MacOS|AnyCPU' ">
+		<DefineConstants>MACOS;OPENGL;</DefineConstants>
+	  	<Optimize>true</Optimize>
+	  	<OutputPath>bin\MacOS</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux|AnyCPU' ">
+		<DefineConstants>LINUX;OPENGL;</DefineConstants>
+	  	<Optimize>true</Optimize>
+	  	<OutputPath>bin\Linux</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MacOS-Debug|AnyCPU' ">
+	  	<DefineConstants>MACOS;DEBUG;OPENGL;</DefineConstants>
+		<Optimize>false</Optimize>
+	  	<OutputPath>bin\MacOS-Debug</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux-Debug|AnyCPU' ">
+	  	<DefineConstants>LINUX;DEBUG;OPENGL;</DefineConstants>
+		<Optimize>false</Optimize>
+	  	<OutputPath>bin\Linux-Debug</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows|AnyCPU' ">
+	  	<DefineConstants>WINDOWS;DIRECTX;</DefineConstants>
+		<Optimize>true</Optimize>
+	  	<OutputPath>bin\Windows</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows-Debug|AnyCPU' ">
+	  	<DefineConstants>WINDOWS;DEBUG;DIRECTX;</DefineConstants>
+		<Optimize>false</Optimize>
+	  	<OutputPath>bin\Windows-Debug</OutputPath>
+	  	<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
 </Project>
