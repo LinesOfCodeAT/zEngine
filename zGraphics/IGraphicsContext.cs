@@ -12,9 +12,20 @@ namespace zGraphics
 {
 	public interface IGraphicsContext
 	{
-		IWindow CreateWindow(int width, int height, string title = "Window");
+		/// <summary>
+		/// Creates the window.
+		/// </summary>
+		/// <returns>id of the window</returns>
+		/// <param name="width">Width.</param>
+		/// <param name="height">Height.</param>
+		/// <param name="title">Title.</param>
+		int CreateWindow(int width, int height, string title = "Window", bool makeCurrent = true);
 
-		void CloseWindow(ref IWindow window);
+		/// <summary>
+		/// closes window
+		/// </summary>
+		/// <param name="id">Identifier.</param>
+		void CloseWindow(int id);
 
 	}
 }

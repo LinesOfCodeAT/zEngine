@@ -15,6 +15,14 @@
 
 	<ItemGroup>
 		<PackageReference Include="NETStandard.Library" Version="1.6" />
+		<ProjectReference Include="..\zAI\zAI.csproj" />
+		<ProjectReference Include="..\zAssets\zAssets.csproj" />
+		<ProjectReference Include="..\zAudio\zAudio.csproj" />
+		<ProjectReference Include="..\zControls\zControls.csproj" />
+		<ProjectReference Include="..\zCore\zCore.csproj" />
+		<ProjectReference Include="..\zGraphics\zGraphics.csproj" />
+		<ProjectReference Include="..\zPhysics\zPhysics.csproj" />
+		<ProjectReference Include="..\External\Glfw.Net\Glfw\Glfw.csproj" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -59,8 +67,8 @@
 	  	<WarningLevel>4</WarningLevel>
 	</PropertyGroup>
 	
-	<Target Name="CopyPackage" AfterTargets="Build">
+<!--	<Target Name="CopyPackage" AfterTargets="Build">
 		<CallTarget Targets="Pack" />
 		<Copy SourceFiles="$(OutputPath)\..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="..\Packages\" />
-	</Target>
+	</Target> -->
 </Project>
